@@ -9,16 +9,16 @@ void main() {
         '/secondpage': (BuildContext context) => new SecondPage(),
   }));}
 class MyApp extends StatelessWidget {
+  var _controller = new TextEditingController();
   // This widget is the root of your application.
 
   @override
-  final myController = TextEditingController();
   Widget build(BuildContext context) {
    return Scaffold(
       body: Column(
         children: [
           TextField(
-            controller: myController,
+            controller: _controller,
             decoration: InputDecoration(
               hintText: "username text"
             )
@@ -40,10 +40,8 @@ class MyApp extends StatelessWidget {
     
   }
   void saveUsername(){
-      String username = myController.text;
-      saveNamePreference(username).then(bool committed){
-        Navigator.of(context).pushNamed(NextPage.routeName);
-      };
+      String username = _controller.text;
+      saveNamePreference(username);
 
     }
 }
