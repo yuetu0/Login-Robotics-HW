@@ -1,6 +1,7 @@
 import 'package:Login/secondpage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -11,10 +12,16 @@ void main() {
 class MyApp extends StatelessWidget {
   var _controller = new TextEditingController();
   var mycontroller = new TextEditingController();
+
+  
+
   // This widget is the root of your application.
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.pink
+    ));
    return Scaffold(
       body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
