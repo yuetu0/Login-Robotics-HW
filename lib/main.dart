@@ -10,20 +10,24 @@ void main() {
   }));}
 class MyApp extends StatelessWidget {
   var _controller = new TextEditingController();
+  var mycontroller = new TextEditingController();
   // This widget is the root of your application.
 
   @override
   Widget build(BuildContext context) {
    return Scaffold(
       body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           TextField(
             controller: _controller,
             decoration: InputDecoration(
-              hintText: "username text"
+              hintText: "username"
             )
           ),
           TextField(
+            controller:mycontroller,
             decoration: InputDecoration(
               hintText:"password"
             )
@@ -32,6 +36,8 @@ class MyApp extends StatelessWidget {
             child: Text("Login"),
             onPressed: (){
               saveUsername();
+              savePassword();
+              Navigator.of(context).pushNamed('/secondpage');
             })
         ],
         
@@ -44,7 +50,24 @@ class MyApp extends StatelessWidget {
       saveNamePreference(username);
 
     }
+  void savePassword(){
+    String password = mycontroller.text;
+    savePasswordPreference(password);
+  }
 }
+Future<bool> savePasswordPreference(String password) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.setString("password", password);
+} 
+
+Future<String> getPasswordPreferences() async{
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String password = prefs.getString("password");
+  return password;
+  
+}
+
+
 
 Future<bool> saveNamePreference(String username) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -55,4 +78,5 @@ Future<String> getNamePreferences() async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String username = prefs.getString("username");
   return username;
+  
 }

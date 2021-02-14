@@ -12,9 +12,11 @@ class SecondPage extends StatefulWidget{
   
 class _SecondPageState extends State<SecondPage>{
   String _username = "";
+  String _password = "";
   @override
   void initState() {
     getNamePreferences().then(updateUsername);
+    getPasswordPreferences().then(updatePassword);
     super.initState();
   }
   @override
@@ -23,13 +25,25 @@ class _SecondPageState extends State<SecondPage>{
       appBar: new AppBar(
       title: new Text("Second Page"),
       ),
-      body: new ListTile(title: new Text(_username),)
+      body: new Column(
+        children: [
+          ListTile(title: new Text("username : " + _username),
+          
+          ),
+          ListTile(title: new Text("password : " + _password),)],
+      )
       );
   }
   void updateUsername(String username){
     
     setState((){
       this._username = username;
+    });
+  }
+  void updatePassword(String password){
+    
+    setState((){
+      this._password = password;
     });
   }
 
