@@ -36,7 +36,11 @@ class _SecondPageState extends State<SecondPage>{
           ),
           ListTile(title: new Text("password : " + _password,
           style: TextStyle(color : Colors.pink[100])),
-),]));
+),]
+          ListView.builder(
+            itemCount: ,
+          )
+));
   }
   void updateUsername(String username){
     
